@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
 
     /* printv(res,N); */
 
-    printf("Done.\nTotal Time: %lf", cpu_time_used);
+    printf("Done.\nTotal Time: %lf\n", cpu_time_used);
 
     // clean up
     free(res);
