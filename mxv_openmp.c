@@ -39,7 +39,7 @@ int main(int argc, char** argv) {
     }
 
     // set up matrix and vector
-    float *m = (float *)malloc(sizeof(float *) * N * N);
+    float *m = (float *)malloc(sizeof(float) * N * N);
     float *v = (float *)malloc(sizeof(float) * N);
     float *res = (float *)calloc(N, sizeof(float));
 
@@ -54,6 +54,7 @@ int main(int argc, char** argv) {
     clock_t start, end;
     double cpu_time_used;
 
+    printf("Performing Matrix-Vector Multiplication\n");
     //actual computation
     start = clock();
 
@@ -69,7 +70,7 @@ int main(int argc, char** argv) {
 
     /* printv(res,N); */
 
-    printf("Total Time: %lf", cpu_time_used);
+    printf("Done.\nTotal Time: %lf", cpu_time_used);
 
     // clean up
     free(res);
