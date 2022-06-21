@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
 
     /* printv(res,N); */
 
-    printf("Total Time: %lf", cpu_time_used);
+    printf("Total Time: %lf\n", cpu_time_used);
 
     // clean up
     free(res);
