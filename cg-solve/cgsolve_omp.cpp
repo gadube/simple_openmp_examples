@@ -73,7 +73,7 @@ void spmv(YType y, AType A, XType x) {
 
                 double sum = 0;
 
-                #pragma omp parallel for reduction(+:sum)
+                #pragma omp simd reduction(+:sum)
                 for(size_t i = row_start; i < row_end; ++i) {
                         sum += A.values(i) * x(A.col_idx(i));
                 }
