@@ -25,6 +25,25 @@ void printv(float *v, long N) {
     printf("\n\n");
 }
 
+void verify(float *res, float *m, float *v, long N) {
+    const float EPSILON = 0.000001;
+    float *verify_res = (float *)calloc(N, sizeof(float));
+    for (long i = 0; i < N; i++) {
+        for (long j = 0; j < N; j++) {
+            verify_res[i] += m[i * N + j] * v[j];
+        }
+    }
+
+    for (long i = 0; i < N; i++) {
+        if ((verify_res[i] - res[i]) >= EPSILON) {
+            printf("Invalid at pos %ld, res = %0.10f, actual = %0.10f.\n", i, res[i], verify_res[i]);
+            exit(-1);
+        }
+    }
+
+    free(verify_res);
+}
+
 int main(int argc, char** argv) {
 
     if (argc != 2) {
@@ -46,9 +65,9 @@ int main(int argc, char** argv) {
     // populate matrix and vector
     for (long i = 0; i < N; i++) {
         for (long j = 0; j < N; j++) {
-            m[i * N + j] = i * N + j;
+            m[i * N + j] = (i * N + j) * 1.234;
         }
-        v[i] = i;
+        v[i] = i * 1.234;
     }
 
     clock_t start, end;
@@ -71,6 +90,9 @@ int main(int argc, char** argv) {
     /* printv(res,N); */
 
     printf("Done.\nTotal Time: %lf\n", cpu_time_used);
+    printf("Beginning Verification...\n");
+    verify(res, m, v, N);
+    printf("Verified.\n");
 
     // clean up
     free(res);
