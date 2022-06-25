@@ -84,7 +84,7 @@ void spmv(YType y, AType A, XType x) {
 
 template <class YType, class XType>
 double dot(YType y, XType x) {
-  double result;
+  double result = 0.0;
   const size_t n = y.extent(0);
 
   #pragma omp parallel for reduction(+:result)

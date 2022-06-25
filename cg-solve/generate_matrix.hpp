@@ -62,6 +62,11 @@ namespace Kokkos {
 
             }
 
+            View(View const&) noexcept = default;
+            View(View&&) noexcept = default;
+            View& operator=(View const&) noexcept = default;
+            View& operator=(View&&) noexcept = default;
+
             ~View() {
                 /* delete m_array; */
             }
